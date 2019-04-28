@@ -69,18 +69,6 @@ def upload_photo():
     image = vision.types.Image(
         source=vision.types.ImageSource(gcs_image_uri=source_uri))
     faces = vision_client.face_detection(image).face_annotations
-    
-#///////////////////////////
-        IReadOnlyList<LocalizedObjectAnnotation> annotations = vision_client.DetectLocalizedObjects(image);
-        foreach (LocalizedObjectAnnotation annotation in annotations)
-        {
-            string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
-            Console.WriteLine(
-            $"Name: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: {poly}");
-        }
-#///////////////////////////
-    
-    
 
     # If a face is detected, save to Datastore the likelihood that the face
     # displays 'joy,' as determined by Google's Machine Learning algorithm.
